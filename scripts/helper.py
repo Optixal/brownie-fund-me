@@ -6,7 +6,7 @@ MOCK_AGGREGATOR_STARTING_PRICE = 2000 * 10**MOCK_AGGREGATOR_DECIMALS
 
 
 # If using dev, and ganache is using hardfork london (EIP-1559), specifiy gas price
-if network.show_active() == "development":
+if network.show_active() == "ganache-local":
     network.priority_fee("20 gwei")
 
 

@@ -23,6 +23,7 @@ def deploy_fund_me():
         publish_source=config["networks"][chain].get("verify"),
     )
     print(f"Contract deployed to {fund_me.address}")
+    return fund_me
 
 
 def main():

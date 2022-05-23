@@ -54,6 +54,13 @@ contract FundMe {
         return (ethAmount * getPrice()) / 1000000000000000000;
     }
 
+    function getEntranceFee() public view returns (uint256) {
+        uint256 minimumUSD = 50 * 10**18; // USD 50, 18 dp
+        uint256 price = getPrice();
+        uint256 precision = 1 * 10**18;
+        return (minimumUSD * precision) / price;
+    }
+
     // Modifiers are used to change the behaviour of a function in a declarative way
     modifier onlyOwner() {
         require(msg.sender == owner, "Only the contract owner can perform this.");
