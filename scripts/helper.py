@@ -1,9 +1,8 @@
 from brownie import MockV3Aggregator, accounts, config, network
-from web3 import Web3
 
 LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["development", "ganache-local"]
-MOCK_AGGREGATOR_DECIMALS = 18
-MOCK_AGGREGATOR_STARTING_PRICE = 2000
+MOCK_AGGREGATOR_DECIMALS = 8
+MOCK_AGGREGATOR_STARTING_PRICE = 2000 * 10**MOCK_AGGREGATOR_DECIMALS
 
 
 # If using dev, and ganache is using hardfork london (EIP-1559), specifiy gas price
@@ -22,9 +21,7 @@ def get_account():
 
 def deploy_mock_aggregator():
     if len(MockV3Aggregator) <= 0:
-        MockV3Aggregator.deploy(
-            MOCK_AGGREGATOR_DECIMALS, Web3.toWei(MOCK_AGGREGATOR_STARTING_PRICE, "ether"), {"from": get_account()}
-        )
+        MockV3Aggregator.deploy(MOCK_AGGREGATOR_DECIMALS, MOCK_AGGREGATOR_STARTING_PRICE, {"from": get_account()})
     else:
         print("Reusing mock aggregator.")
     address = MockV3Aggregator[-1].address
