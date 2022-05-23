@@ -13,15 +13,9 @@ contract FundMe {
     address[] public funders;
 
     // Executes immediately on contract deployment
-    constructor() {
+    constructor(address _priceFeed) {
         owner = msg.sender;
-
-        /**
-         * Network: Rinkeby
-         * Aggregator: ETH/USD
-         * Address: 0x8A753747A1Fa494EC906cE90E9f37563A8AF630e
-         */
-        priceFeed = AggregatorV3Interface(0x8A753747A1Fa494EC906cE90E9f37563A8AF630e);
+        priceFeed = AggregatorV3Interface(_priceFeed);
     }
 
     // Payable function, user can specify a value in wei in a transaction
