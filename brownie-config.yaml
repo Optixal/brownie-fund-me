@@ -1,0 +1,10 @@
+dependencies:
+  # - <organization/repo>@<version>
+  - smartcontractkit/chainlink@1.4.1
+compiler:
+  solc:
+    remappings:
+      - '@chainlink=smartcontractkit/chainlink@1.4.1'
+dotenv: .env
+wallets:
+  from_key: ${WEB3_PRIVATE_KEY}
