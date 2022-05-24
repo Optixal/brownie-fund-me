@@ -1,6 +1,7 @@
 from brownie import MockV3Aggregator, accounts, config, network
 
 LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["development", "ganache-local"]
+FORKED_ENVIRONMENTS = ["mainnet-fork"]
 MOCK_AGGREGATOR_DECIMALS = 8
 MOCK_AGGREGATOR_STARTING_PRICE = 2000 * 10**MOCK_AGGREGATOR_DECIMALS
 
@@ -11,7 +12,7 @@ if network.show_active() == "ganache-local":
 
 
 def get_account():
-    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
+    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS or network.show_active() in FORKED_ENVIRONMENTS:
         return accounts[0]
     else:
         # return accounts.load("ethereum-dev")
